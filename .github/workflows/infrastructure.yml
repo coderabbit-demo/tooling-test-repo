@@ -1,5 +1,6 @@
 name: Infrastructure Validation
 on:
+  push:
   pull_request:
     paths:
         - 'project/gh-action/**'
