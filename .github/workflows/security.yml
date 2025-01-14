@@ -1,0 +1,24 @@
+name: Security Checks
+on:
+  push:
+  pull_request:
+    paths:
+        - 'project/gh-action/**'
+    branches:
+        - 'gh-action-testing/**'
+
+jobs:
+    semgrep:
+        runs-on: ubuntu-latest
+        steps:
+            - uses : actions/checkout@v4
+            
+            - name: Run Semgrep
+              uses: semgrep/semgrep-action@v1
+              with:
+                config: >-
+                  p/security-audit
+                  p/owasp-top-ten
+                  p/javascript
+                  p/python
+                path: project/gh-action
